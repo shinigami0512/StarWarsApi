@@ -36,7 +36,7 @@ public class ElementosRecycler extends AppCompatActivity {
     private ImageView btnSiguientePagina;
     private ImageView btnRetrocederPagina;
 
-    private int contador = 2;//Contador para determinar la siguiente pagina
+    private int contador = 1;//Contador para determinar la siguiente pagina
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,28 +64,36 @@ public class ElementosRecycler extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                contador++;//Aumento el contador para que vaya a la siguiente pagina
+
+                Log.d("Contador", "Accediendo a la pagina "+contador);
+
                 btnRetrocederPagina.setVisibility(View.VISIBLE);//Muestro el botón de retroceder
 
                 String url = "https://swapi.dev/api/" + busqueda + "/?page=" + contador;
                 buscarElementos(url, elementos);
-                contador++;//Aumento el contador para que vaya a la siguiente pagina
             }
         });
 
         btnRetrocederPagina.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
 
                 contador--;//Resta el contador para retroceder
 
-                if(contador == 2){//Si el contador es igual a 2 significa que se está en la primera página
+                Log.d("Contador", "Contador: "+contador);
+
+                if(contador == 1){//Si el contador es igual a 1 significa que se está en la primera página
+
+                    Log.d("Contador", "Accediendo a la primera pagina");
 
                     String url = "https://swapi.dev/api/" + busqueda + "/";
                     buscarElementos(url, elementos);
                     btnRetrocederPagina.setVisibility(View.INVISIBLE);//Oculto el botón de retroceder
 
                 }else{
+
+                    Log.d("Contador", "Accediendo a la pagina "+contador);
 
                     String url = "https://swapi.dev/api/" + busqueda + "/?page=" + contador;
                     buscarElementos(url, elementos);

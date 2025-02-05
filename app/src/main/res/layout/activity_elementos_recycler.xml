@@ -37,7 +37,7 @@
                 android:id="@+id/btnRetrocederPagina"
                 android:layout_width="65dp"
                 android:layout_height="65dp"
-                android:visibility="visible"
+                android:visibility="invisible"
                 app:srcCompat="@android:drawable/ic_media_rew" />
 
             <ImageView
